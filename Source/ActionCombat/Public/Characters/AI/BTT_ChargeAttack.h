@@ -17,7 +17,15 @@ class ACTIONCOMBAT_API UBTT_ChargeAttack : public UBTTaskNode
 
 	UPROPERTY(EditAnywhere)
 	float AcceptableRadius{ 100.0f };
+	
+	FScriptDelegate MoveCompletedDelegate;
+	float OriginalWalkSpeed;
 
+	UPROPERTY(EditAnywhere)
+	float ChargeWalkSpeed{ 2000.0f };
+
+	bool bIsFinished{ false };
+	
 protected:
 	virtual void TickTask(
 		UBehaviorTreeComponent& OwnerComp,
@@ -35,5 +43,9 @@ public:
 
 	void ChargeAtPlayer();
 	
-	
+	UFUNCTION()
+	void HandleMoveCompleted();
+
+	UFUNCTION()
+	void FinishAttackTask();
 };
