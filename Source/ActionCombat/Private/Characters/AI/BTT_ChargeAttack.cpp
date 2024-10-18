@@ -3,6 +3,7 @@
 #include "AIController.h"
 #include "Animations/BossAnimInstance.h"
 #include "BehaviorTree/BlackboardComponent.h"
+#include "Characters/EEnemyState.h"
 #include "GameFramework/Character.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Navigation/PathFollowingComponent.h"
@@ -18,6 +19,8 @@ void UBTT_ChargeAttack::TickTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeM
 		ChargeAtPlayer();
 	}
 	if (!bIsFinished) { return; }
+
+	OwnerComp.GetBlackboardComponent()->SetValueAsEnum(TEXT("CurrentState"), EEnemyState::Melee);
 
 	ControllerRef->ReceiveMoveCompleted.Remove(MoveCompletedDelegate);
 
