@@ -18,6 +18,7 @@ class ACTIONCOMBAT_API UCombatComponent : public UActorComponent
 
 	UPROPERTY(EditAnywhere)
 	TArray<UAnimMontage*> AttackAnimations;
+	
 	ACharacter* CharacterRef;
 	
 	UPROPERTY(VisibleAnywhere)
