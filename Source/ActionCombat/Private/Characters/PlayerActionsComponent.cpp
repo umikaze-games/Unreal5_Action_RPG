@@ -2,7 +2,7 @@
 #include "Characters/PlayerActionsComponent.h"
 #include "GameFramework/Character.h"
 #include "GameFramework/CharacterMovementComponent.h"
-#include "Interface/MainPlayer.h"
+#include "Interfaces/MainPlayer.h"
 
 UPlayerActionsComponent::UPlayerActionsComponent()
 {

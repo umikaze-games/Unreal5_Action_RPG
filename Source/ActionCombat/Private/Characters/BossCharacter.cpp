@@ -7,7 +7,6 @@
 #include "BehaviorTree/BlackboardComponent.h"
 #include "Combat/CombatComponent.h"
 
-
 // Sets default values
 ABossCharacter::ABossCharacter()
 {
@@ -22,7 +21,7 @@ ABossCharacter::ABossCharacter()
 void ABossCharacter::BeginPlay()
 {
 	Super::BeginPlay();
-
+	
 	BlackboardComp = GetController<AAIController>()
 		->GetBlackboardComponent();
 
@@ -75,7 +74,3 @@ float ABossCharacter::GetAnimDuration()
 	return CombatComp->AnimDuration;
 }
 
-float ABossCharacter::GetMeleeRange()
-{
-	return StatsComp->Stats[EStat::MeleeRange];
-}

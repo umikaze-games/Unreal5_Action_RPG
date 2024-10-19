@@ -1,7 +1,7 @@
 
 #include "Combat/CombatComponent.h"
 #include "GameFramework/Character.h"
-#include "Interface/MainPlayer.h"
+#include "Interfaces/MainPlayer.h"
 #include "Kismet/KismetMathLibrary.h"
 
 UCombatComponent::UCombatComponent()

@@ -5,7 +5,7 @@
 #include "Characters/EEnemyState.h"
 #include "Characters/EStat.h"
 #include "GameFramework/Character.h"
-#include "Interface/Fighter.h"
+#include "Interfaces/Fighter.h"
 #include "Navigation/PathFollowingComponent.h"
 
 EBTNodeResult::Type UBTT_MeleeAttack::ExecuteTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory)

@@ -4,8 +4,8 @@
 #include "CoreMinimal.h"
 #include "Characters/MainCharacter.h"
 #include "Characters/StatsComponent.h"
-#include "Interface/Fighter.h"
-#include "Interface/MainPlayer.h"
+#include "Interfaces/Fighter.h"
+#include "Interfaces/MainPlayer.h"
 #include "Logging/LogMacros.h"
 #include "ActionCombatCharacter.generated.h"
 

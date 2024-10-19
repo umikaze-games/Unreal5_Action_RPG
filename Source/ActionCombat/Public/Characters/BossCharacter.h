@@ -4,9 +4,9 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
-#include "Interface/Enemy.h"
 #include "Characters/EEnemyState.h"
-#include "Interface/Fighter.h"
+#include "Interfaces/Enemy.h"
+#include "Interfaces/Fighter.h"
 #include "BossCharacter.generated.h"
 
 UCLASS()
@@ -26,7 +26,7 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	class UStatsComponent* StatsComp;
 
-	//UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	class UCombatComponent* CombatComp;
 
 protected:
@@ -48,6 +48,4 @@ public:
 	virtual void Attack() override;
 
 	virtual float GetAnimDuration() override;
-
-	virtual float GetMeleeRange() override;
 };

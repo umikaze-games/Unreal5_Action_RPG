@@ -3,7 +3,7 @@
 
 #include "ShaderPrintParameters.h"
 #include "GameFramework/Character.h"
-#include "Interface/Enemy.h"
+#include "Interfaces/Enemy.h"
 #include "Kismet/KismetArrayLibrary.h"
 #include "Kismet/KismetMathLibrary.h"
 

@@ -1,8 +1,7 @@
 
 #include "Combat/TraceComponent.h"
-
 #include "Engine/DamageEvents.h"
-#include "Interface/Fighter.h"
+#include "Interfaces/Fighter.h"
 #include "Kismet/KismetMathLibrary.h"
 #include "Kismet/KismetSystemLibrary.h"
 
