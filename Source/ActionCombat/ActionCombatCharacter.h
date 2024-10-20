@@ -42,6 +42,10 @@ class AActionCombatCharacter : public AMainCharacter,public  IMainPlayer,public 
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
 	UInputAction* LockonAction;
+
+	UPROPERTY(EditAnywhere)
+	UAnimMontage* DeathAnimMontage;
+
 public:
 	AActionCombatCharacter();
 
@@ -84,5 +88,9 @@ public:
 	virtual float GetDamage() override;
 
 	virtual bool HasEnoughStamina(float Cost) override;
+	
+	UFUNCTION(BlueprintCallable)
+	void HandleDeath();
+
 };
 

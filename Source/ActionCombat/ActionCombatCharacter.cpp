@@ -117,3 +117,9 @@ bool AActionCombatCharacter::HasEnoughStamina(float Cost)
 	return StatsComp->Stats[EStat::Stamina] >= Cost;
 }
 
+void AActionCombatCharacter::HandleDeath()
+{
+	PlayAnimMontage(DeathAnimMontage);
+
+	DisableInput(GetController<APlayerController>());
+}
