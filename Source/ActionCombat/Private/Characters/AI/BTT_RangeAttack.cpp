@@ -19,8 +19,7 @@ EBTNodeResult::Type UBTT_RangeAttack::ExecuteTask(UBehaviorTreeComponent& OwnerC
 
 	if (Distance < FighterRef->GetMeleeRange())
 	{
-		OwnerComp.GetBlackboardComponent()
-			->SetValueAsEnum(TEXT("CurrentState"), EEnemyState::Melee);
+		OwnerComp.GetBlackboardComponent()->SetValueAsEnum(TEXT("CurrentState"), EEnemyState::Melee);
 
 		AbortTask(OwnerComp, NodeMemory);
 
