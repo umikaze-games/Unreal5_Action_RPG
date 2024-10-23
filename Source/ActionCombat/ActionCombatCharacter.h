@@ -22,6 +22,9 @@ class AActionCombatCharacter : public AMainCharacter,public  IMainPlayer,public 
 {
 	GENERATED_BODY()
 
+	UPROPERTY(EditAnywhere)
+	UAnimMontage* HurtAnimMontage;
+
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
 	USpringArmComponent* CameraBoom;
 	
@@ -91,6 +94,13 @@ public:
 	
 	UFUNCTION(BlueprintCallable)
 	void HandleDeath();
+
+	virtual void EndLockonWithActor(AActor* ActorRef) override;
+
+	virtual bool CanTakeDamage(AActor* Opponent) override;
+
+	UFUNCTION(BlueprintCallable)
+	void PlayHurtAnim();
 
 };
 

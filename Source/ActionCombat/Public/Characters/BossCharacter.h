@@ -1,10 +1,9 @@
-
 #pragma once
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
-#include "Characters/EEnemyState.h"
 #include "Interfaces/Enemy.h"
+#include "Characters/EEnemyState.h"
 #include "Interfaces/Fighter.h"
 #include "BossCharacter.generated.h"
 
@@ -17,6 +16,11 @@ class ACTIONCOMBAT_API ABossCharacter : public ACharacter, public IEnemy, public
 	TEnumAsByte<EEnemyState> InitialState;
 
 	class UBlackboardComponent* BlackboardComp;
+
+	UPROPERTY(EditAnywhere)
+	UAnimMontage* DeathAnim;
+
+	class AAIController* ControllerRef;
 
 public:
 	ABossCharacter();
@@ -43,4 +47,14 @@ public:
 	virtual void Attack() override;
 
 	virtual float GetAnimDuration() override;
+
+	UFUNCTION()
+	void HandlePlayerDeath();
+
+	UFUNCTION(BlueprintCallable)
+	void HandleDeath();
+
+	UFUNCTION()
+	void FinishDeathAnim();
 };
+

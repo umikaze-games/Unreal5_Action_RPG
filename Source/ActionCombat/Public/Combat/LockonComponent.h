@@ -21,7 +21,7 @@ class ACTIONCOMBAT_API ULockonComponent : public UActorComponent
 	ACharacter* OwenRef;
 	APlayerController* Controller;
 	class UCharacterMovementComponent* MovementComp;
-	AActor* CurrentTargetActor;
+	
 	class USpringArmComponent* SpringArmComp;
 	
 public:	
@@ -32,17 +32,18 @@ public:
 	
 	UFUNCTION(BlueprintCallable)
 	void StartLockon(float Radius=750.f);
+	
 	UFUNCTION(BlueprintCallable)
 	void ToggleLockon(float Radius=750.f);
-	void EndLockon();
-
+	
 	UPROPERTY(EditAnywhere)
 	double BreakDistance=1000;
-	
+
+	AActor* CurrentTargetActor;
 protected:
 	virtual void BeginPlay() override;
 
 public:	
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
-	
+	void EndLockon();
 };

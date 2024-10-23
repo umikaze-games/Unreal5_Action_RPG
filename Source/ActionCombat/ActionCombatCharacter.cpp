@@ -123,3 +123,24 @@ void AActionCombatCharacter::HandleDeath()
 
 	DisableInput(GetController<APlayerController>());
 }
+
+void AActionCombatCharacter::EndLockonWithActor(AActor* ActorRef)
+{
+	if (LockonComp->CurrentTargetActor != ActorRef) { return; }
+
+	LockonComp->EndLockon();
+}
+
+bool AActionCombatCharacter::CanTakeDamage(AActor* Opponent)
+{
+	if (PlayerAnim->bIsBlocking) 
+	{
+		return BlockComp->Check(Opponent);
+	}
+
+	return true;
+}
+void AActionCombatCharacter::PlayHurtAnim()
+{
+	PlayAnimMontage(HurtAnimMontage);
+}

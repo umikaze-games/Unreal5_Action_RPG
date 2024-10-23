@@ -1,6 +1,7 @@
 
 #include "Characters/StatsComponent.h"
 
+#include "Interfaces/Fighter.h"
 #include "Kismet/KismetMathLibrary.h"
 #include "Kismet/KismetSystemLibrary.h"
 
@@ -20,8 +21,14 @@ void UStatsComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActor
 	
 }
 
-void UStatsComponent::ReduceHealth(float Amount)
+void UStatsComponent::ReduceHealth(float Amount, AActor* Opponent)
 {
+	if (Stats[EStat::Health] <= 0) { return; }
+
+	IFighter* FighterRef{ GetOwner<IFighter>() };
+
+	if (!FighterRef->CanTakeDamage(Opponent)) { return; }
+
 	if (Stats[EStat::Health] <= 0) { return; }
 
 	Stats[EStat::Health] -= Amount;
