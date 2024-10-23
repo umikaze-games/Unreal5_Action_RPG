@@ -43,8 +43,6 @@ class ACTIONCOMBAT_API UPlayerActionsComponent : public UActorComponent
 	UPROPERTY(EditAnywhere)
 	float RollCost{ 5.0f };
 
-	bool bIsRollActive{ false };
-
 public:	
 	// Sets default values for this component's properties
 	UPlayerActionsComponent();
@@ -55,7 +53,8 @@ public:
 	UPROPERTY(BlueprintAssignable)
 	FOnRollSignature OnRollDelegate;
 
-
+	bool bIsRollActive{ false };
+	
 protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;

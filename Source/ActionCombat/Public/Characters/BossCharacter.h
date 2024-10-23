@@ -56,5 +56,8 @@ public:
 
 	UFUNCTION()
 	void FinishDeathAnim();
+
+	virtual float GetMeleeRange() override;
+
 };
 

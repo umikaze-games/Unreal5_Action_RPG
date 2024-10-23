@@ -123,3 +123,8 @@ void ABossCharacter::FinishDeathAnim()
 {
 	Destroy();
 }
+
+float ABossCharacter::GetMeleeRange()
+{
+	return StatsComp->Stats[EStat::MeleeRange];
+}

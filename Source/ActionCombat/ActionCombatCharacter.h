@@ -23,7 +23,15 @@ class AActionCombatCharacter : public AMainCharacter,public  IMainPlayer,public 
 	GENERATED_BODY()
 
 	UPROPERTY(EditAnywhere)
+	UAnimMontage* DeathAnimMontage;
+
+	UPROPERTY(EditAnywhere)
 	UAnimMontage* HurtAnimMontage;
+	
+
+	
+public:
+	AActionCombatCharacter();
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
 	USpringArmComponent* CameraBoom;
@@ -45,12 +53,6 @@ class AActionCombatCharacter : public AMainCharacter,public  IMainPlayer,public 
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
 	UInputAction* LockonAction;
-
-	UPROPERTY(EditAnywhere)
-	UAnimMontage* DeathAnimMontage;
-
-public:
-	AActionCombatCharacter();
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	class UPlayerActionsComponent* PlayerActionsComp;
@@ -100,7 +102,7 @@ public:
 	virtual bool CanTakeDamage(AActor* Opponent) override;
 
 	UFUNCTION(BlueprintCallable)
-	void PlayHurtAnim();
+	void PlayHurtAnim(TSubclassOf<class UCameraShakeBase> CameraShakeTemplate);
 
 };
 
