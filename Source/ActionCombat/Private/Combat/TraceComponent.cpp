@@ -25,7 +25,6 @@ void UTraceComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActor
 
 	if (!bIsAttacking) { return; }
 	
-	UE_LOG(LogTemp,Warning,TEXT("isattacking ato"))
 	TArray<FHitResult> AllResults;
 
 	for (const FTraceSockets Socket: Sockets) {
@@ -89,8 +88,8 @@ void UTraceComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActor
 			);
 		}
 	}
-	UE_LOG(LogTemp,Warning,TEXT("return mai"))
-	if (AllResults.Num() == 0) { return; }
+
+	//if (AllResults.Num() == 0) { return; }
 
 	float CharacterDamage{ 0.0f };
 	UE_LOG(LogTemp,Warning,TEXT("no damage"))
