@@ -19,6 +19,7 @@ protected:
 
 	UPROPERTY(BlueprintReadOnly)
 	class UPlayerAnimInstance* PlayerAnim;
+
 public:	
 	virtual void Tick(float DeltaTime) override;
 	

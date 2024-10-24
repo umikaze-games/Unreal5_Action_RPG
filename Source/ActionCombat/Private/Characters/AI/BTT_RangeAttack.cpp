@@ -10,16 +10,23 @@
 
 EBTNodeResult::Type UBTT_RangeAttack::ExecuteTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory)
 {
-	ACharacter* CharacterRef=OwnerComp.GetAIOwner()->GetPawn<ACharacter>();
+	ACharacter* CharacterRef{ 
+		OwnerComp.GetAIOwner()->GetPawn<ACharacter>() 
+	};
+
 	if (!IsValid(CharacterRef)) { return EBTNodeResult::Failed; }
 
-	float Distance=OwnerComp.GetBlackboardComponent()->GetValueAsFloat(TEXT("Distance"));
-
+	float Distance{
+		OwnerComp.GetBlackboardComponent()
+			->GetValueAsFloat(TEXT("Distance"))
+	};
+	
 	IFighter* FighterRef{ Cast<IFighter>(CharacterRef) };
 
 	if (Distance < FighterRef->GetMeleeRange())
 	{
-		OwnerComp.GetBlackboardComponent()->SetValueAsEnum(TEXT("CurrentState"), EEnemyState::Melee);
+		OwnerComp.GetBlackboardComponent()
+			->SetValueAsEnum(TEXT("CurrentState"), EEnemyState::Melee);
 
 		AbortTask(OwnerComp, NodeMemory);
 
@@ -33,14 +40,17 @@ EBTNodeResult::Type UBTT_RangeAttack::ExecuteTask(UBehaviorTreeComponent& OwnerC
 	if (RandomValue > Threshold)
 	{
 		Threshold = 0.9;
-		OwnerComp.GetBlackboardComponent()->SetValueAsEnum(TEXT("CurrentState"),EEnemyState::Charge);
-
+		
+		OwnerComp.GetBlackboardComponent()
+			->SetValueAsEnum(
+				TEXT("CurrentState"),
+				EEnemyState::Charge
+			);
 	}
 	else
 	{
 		Threshold -= 0.1;
 	}
 
-	
 	return EBTNodeResult::Succeeded;
 }

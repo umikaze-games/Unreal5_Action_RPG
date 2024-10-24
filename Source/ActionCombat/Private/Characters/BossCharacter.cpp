@@ -10,39 +10,42 @@
 
 ABossCharacter::ABossCharacter()
 {
+ 	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
 	StatsComp = CreateDefaultSubobject<UStatsComponent>(TEXT("Stats Component"));
 	CombatComp = CreateDefaultSubobject<UCombatComponent>(TEXT("Combat Component"));
 }
 
+// Called when the game starts or when spawned
 void ABossCharacter::BeginPlay()
 {
 	Super::BeginPlay();
-	
+
 	ControllerRef = GetController<AAIController>();
 	
 	BlackboardComp = ControllerRef->GetBlackboardComponent();
-	
+
 	BlackboardComp->SetValueAsEnum(
 		TEXT("CurrentState"),
 		InitialState
 	);
-	
-	GetWorld()->GetFirstPlayerController()
-	->GetPawn<AActionCombatCharacter>()
-	->StatsComp
-	->OnZeroHealthDelegate
-	.AddDynamic(this, &ABossCharacter::HandlePlayerDeath);
 
+	GetWorld()->GetFirstPlayerController()
+		->GetPawn<AActionCombatCharacter>()
+		->StatsComp
+		->OnZeroHealthDelegate
+		.AddDynamic(this, &ABossCharacter::HandlePlayerDeath);
 }
 
+// Called every frame
 void ABossCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
 }
 
+// Called to bind functionality to input
 void ABossCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
@@ -84,12 +87,10 @@ void ABossCharacter::HandlePlayerDeath()
 		->SetValueAsEnum(
 			TEXT("CurrentState"), EEnemyState::GameOver
 		);
-
 }
 
 void ABossCharacter::HandleDeath()
 {
-	PlayAnimMontage(DeathAnim);
 	float Duration{ PlayAnimMontage(DeathAnim) };
 
 	ControllerRef->GetBrainComponent()
@@ -116,7 +117,6 @@ void ABossCharacter::HandleDeath()
 	if (!PlayerRef) { return; }
 
 	PlayerRef->EndLockonWithActor(this);
-
 }
 
 void ABossCharacter::FinishDeathAnim()

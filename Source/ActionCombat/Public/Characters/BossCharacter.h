@@ -23,6 +23,7 @@ class ACTIONCOMBAT_API ABossCharacter : public ACharacter, public IEnemy, public
 	class AAIController* ControllerRef;
 
 public:
+	// Sets default values for this character's properties
 	ABossCharacter();
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
@@ -32,11 +33,14 @@ public:
 	class UCombatComponent* CombatComp;
 
 protected:
+	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
 public:	
+	// Called every frame
 	virtual void Tick(float DeltaTime) override;
-	
+
+	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 	UFUNCTION(BlueprintCallable)
@@ -58,6 +62,4 @@ public:
 	void FinishDeathAnim();
 
 	virtual float GetMeleeRange() override;
-
 };
-

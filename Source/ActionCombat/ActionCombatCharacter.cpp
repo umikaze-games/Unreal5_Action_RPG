@@ -46,6 +46,7 @@ AActionCombatCharacter::AActionCombatCharacter()
 	FollowCamera->bUsePawnControlRotation = false;
 
 	PlayerActionsComp = CreateDefaultSubobject<UPlayerActionsComponent>(TEXT("Player Actions Component"));
+	
 	StatsComp = CreateDefaultSubobject<UStatsComponent>(TEXT("Stats Component"));
 	LockonComp = CreateDefaultSubobject<ULockonComponent>(TEXT("Lockon Component"));
 	CombatComp = CreateDefaultSubobject<UCombatComponent>(TEXT("Combat Component"));
@@ -70,8 +71,6 @@ void AActionCombatCharacter::BeginPlay()
 void AActionCombatCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	if (UEnhancedInputComponent* EnhancedInputComponent = Cast<UEnhancedInputComponent>(PlayerInputComponent)) {
-		EnhancedInputComponent->BindAction(JumpAction, ETriggerEvent::Started, this, &ACharacter::Jump);
-		EnhancedInputComponent->BindAction(JumpAction, ETriggerEvent::Completed, this, &ACharacter::StopJumping);
 		EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered, this, &AActionCombatCharacter::Move);
 		EnhancedInputComponent->BindAction(LookAction, ETriggerEvent::Triggered, this, &AActionCombatCharacter::Look);
 	}

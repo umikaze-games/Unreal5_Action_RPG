@@ -8,19 +8,31 @@
 
 UTraceComponent::UTraceComponent()
 {
+	// Set this component to be initialized when the game starts, and to be ticked every frame.  You can turn these features
+	// off to improve performance if you don't need them.
 	PrimaryComponentTick.bCanEverTick = true;
+
+	// ...
 }
 
+
+// Called when the game starts
 void UTraceComponent::BeginPlay()
 {
 	Super::BeginPlay();
-	SkeletalComp=GetOwner()->FindComponentByClass<USkeletalMeshComponent>();
+
+	SkeletalComp = GetOwner()
+		->FindComponentByClass<USkeletalMeshComponent>();
 }
 
+
+// Called every frame
 void UTraceComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
-	
+
+	if (!bIsAttacking) { return; }
+
 	TArray<FHitResult> AllResults;
 
 	for (const FTraceSockets Socket: Sockets) {
@@ -33,7 +45,7 @@ void UTraceComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActor
 		FQuat ShapeRotation{ 
 			SkeletalComp->GetSocketQuaternion(Socket.Rotation) 
 		};
-		
+
 		TArray<FHitResult> OutResults;
 		double WeaponDistance{
 			FVector::Distance(StartSocketLocation, EndSocketLocation)
@@ -85,30 +97,38 @@ void UTraceComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActor
 		}
 	}
 
+	if (AllResults.Num() == 0) { return; }
 
-	if (AllResults.Num()==0){return;}
-	float CharacterDamage=0.f;
-	IFighter* FighterRef=Cast<IFighter>(GetOwner());
+	float CharacterDamage{ 0.0f };
+
+	IFighter* FighterRef{ Cast<IFighter>(GetOwner()) };
+
 	if (FighterRef)
-	{
-		CharacterDamage=FighterRef->GetDamage();
+	{ 
+		CharacterDamage = FighterRef->GetDamage();
 	}
+
 	FDamageEvent TargetAttackedEvent;
-	for(const FHitResult& Hit : AllResults)
+
+	for (const FHitResult& Hit: AllResults)
 	{
-		AActor*TargetActor=Hit.GetActor();
-		if (TargetsToIgnore.Contains(TargetActor)){continue;}
+		AActor* TargetActor{ Hit.GetActor() };
+
+		if (TargetsToIgnore.Contains(TargetActor)) { continue; }
+
 		TargetActor->TakeDamage(
 			CharacterDamage,
 			TargetAttackedEvent,
 			GetOwner()->GetInstigatorController(),
-			GetOwner()
-			);
+			GetOwner()  
+		);
+
 		TargetsToIgnore.AddUnique(TargetActor);
+
 		UGameplayStatics::SpawnEmitterAtLocation(
-		GetWorld(),
-		HitParticleTemplate,
-		Hit.ImpactPoint
+			GetWorld(),
+			HitParticleTemplate,
+			Hit.ImpactPoint
 		);
 	}
 }
@@ -117,4 +137,5 @@ void UTraceComponent::HandleResetAttack()
 {
 	TargetsToIgnore.Empty();
 }
+
 
