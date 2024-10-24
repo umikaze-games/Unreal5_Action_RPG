@@ -10,7 +10,7 @@ void UToggleTraceNotifyState::NotifyBegin(USkeletalMeshComponent* MeshComp, UAni
 	UTraceComponent* TraceComp=
 		MeshComp->GetOwner()->FindComponentByClass<UTraceComponent>();
 	if (!IsValid(TraceComp)){return;}
-	
+	TraceComp->bIsAttacking = true;
 }
 
 void UToggleTraceNotifyState::NotifyEnd(USkeletalMeshComponent* MeshComp, UAnimSequenceBase* Animation,

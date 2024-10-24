@@ -8,15 +8,9 @@
 
 UTraceComponent::UTraceComponent()
 {
-	// Set this component to be initialized when the game starts, and to be ticked every frame.  You can turn these features
-	// off to improve performance if you don't need them.
 	PrimaryComponentTick.bCanEverTick = true;
-
-	// ...
 }
 
-
-// Called when the game starts
 void UTraceComponent::BeginPlay()
 {
 	Super::BeginPlay();
@@ -25,14 +19,13 @@ void UTraceComponent::BeginPlay()
 		->FindComponentByClass<USkeletalMeshComponent>();
 }
 
-
-// Called every frame
 void UTraceComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
 	if (!bIsAttacking) { return; }
-
+	
+	UE_LOG(LogTemp,Warning,TEXT("isattacking ato"))
 	TArray<FHitResult> AllResults;
 
 	for (const FTraceSockets Socket: Sockets) {
@@ -96,10 +89,11 @@ void UTraceComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActor
 			);
 		}
 	}
-
+	UE_LOG(LogTemp,Warning,TEXT("return mai"))
 	if (AllResults.Num() == 0) { return; }
 
 	float CharacterDamage{ 0.0f };
+	UE_LOG(LogTemp,Warning,TEXT("no damage"))
 
 	IFighter* FighterRef{ Cast<IFighter>(GetOwner()) };
 

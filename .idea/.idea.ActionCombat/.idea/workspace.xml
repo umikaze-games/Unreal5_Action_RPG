@@ -30,12 +30,12 @@
     <setting file="file://$PROJECT_DIR$/../../Program Files/Epic Games/UE_5.3/Engine/Source/Runtime/Engine/Classes/Animation/AnimNotifies/AnimNotifyState.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../Program Files/Epic Games/UE_5.3/Engine/Source/Runtime/Engine/Classes/Engine/EngineTypes.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../Program Files/Epic Games/UE_5.3/Engine/Source/Runtime/Engine/Classes/GameFramework/Character.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../Program Files/Epic Games/UE_5.3/Engine/Source/Runtime/Engine/Classes/GameFramework/CharacterMovementComponent.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../Program Files/Epic Games/UE_5.3/Engine/Source/Runtime/Engine/Classes/Kismet/GameplayStatics.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../Program Files/Epic Games/UE_5.3/Engine/Source/Runtime/Engine/Private/EngineTypes.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Intermediate/Build/Win64/UnrealEditor/Inc/ActionCombat/UHT/FTraceSockets.gen.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/ActionCombat/Private/Characters/AI/BTT_RangeAttack.cpp" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Source/ActionCombat/Private/Interface/MainPlayer.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/ActionCombat/Public/Characters/AI/BTT_RangeAttack.h" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Source/ActionCombat/Public/Interface/MainPlayer.h" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="KubernetesApiPersistence">{}</component>
   <component name="KubernetesApiProvider">{
@@ -237,6 +237,7 @@
       <workItem from="1729689437781" duration="5852000" />
       <workItem from="1729696087782" duration="1634000" />
       <workItem from="1729697751865" duration="3108000" />
+      <workItem from="1729731514367" duration="4364000" />
     </task>
     <servers />
   </component>
